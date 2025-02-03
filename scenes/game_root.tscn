@@ -7,10 +7,11 @@
 
 [node name="game_root" type="Node"]
 
-[node name="scene_manager" type="Node" parent="."]
+[node name="scene_manager" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("1_78s5d")
 scenes = Array[ExtResource("2_jb3nc")]([ExtResource("3_iusj4"), ExtResource("4_a1rh6")])
 initial_scene = ExtResource("3_iusj4")
+root = NodePath("../content")
 metadata/_custom_type_script = ExtResource("1_78s5d")
 
 [node name="content" type="Node" parent="."]

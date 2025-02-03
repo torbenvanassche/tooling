@@ -2,16 +2,14 @@ class_name SceneCache extends Node
 
 var cached_scenes: Array[SceneInfo] = [];
 var loading_queue: Array[SceneInfo] = [];
-var timers: Array[Timer] = [];
 	
 func _init() -> void:
 	var timer: Timer = Timer.new();
 	timer.timeout.connect(_check_progress)
 	timer.wait_time = 0.1;
 	
-	timers.append(timer);
-	add_child(timer)
-	timer.start();
+	SceneManager.instance.add_child(timer)
+	timer.call_deferred("start");
 
 func queue(scene_info: SceneInfo) -> void:
 	loading_queue.append(scene_info);
@@ -43,5 +41,5 @@ func is_cached(scene_info: SceneInfo) -> Variant:
 		
 func remove(scene_info: SceneInfo) -> void:
 	if cached_scenes.has(scene_info):
-		cached_scenes[scene_info].node.queue_free();
+		get_from_cache(scene_info).queue_free();
 		cached_scenes.erase(scene_info);

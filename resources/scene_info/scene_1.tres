@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_a3hq3")
-id = "1"
+id = "scene_1"
 packed_scene = "uid://bsvjxbglgxjlm"
 is_ui = false
 metadata/_custom_type_script = ExtResource("1_a3hq3")

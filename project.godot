@@ -10,6 +10,11 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="Tooling"
+run/main_scene="uid://cv403ext7qdnq"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=2
