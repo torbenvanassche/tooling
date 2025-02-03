@@ -53,7 +53,8 @@ func get_or_create_scene(scene_name: String, scene_config: SceneConfig = SceneCo
 		
 func _on_scene_load(scene_info: SceneInfo, scene_config: SceneConfig) -> void:
 	load_in_progress = false;
-	root.add_child(scene_info.node)
+	if root != scene_info.node.get_parent():
+		root.add_child(scene_info.node)
 	_active_scene = scene_info.node;
 	if _active_scene != null:
 		_active_scene.visible = true;
