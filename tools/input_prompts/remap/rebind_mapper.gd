@@ -7,6 +7,7 @@ class_name InputRemappingButton extends Button
 func set_key(string: String, event: InputEvent) -> void:
 	var entry: Array;
 	if event is InputEventKey:
+		string = string.trim_suffix(" (physical)")
 		entry = InputManager.keys.keyboard.get(string)
 	elif event is InputEventMouseButton:
 		string = string.trim_suffix(" (double click)")

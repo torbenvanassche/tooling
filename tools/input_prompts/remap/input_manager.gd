@@ -7,10 +7,6 @@ extends Node
 	"right": tr("KEYBIND_MOVE_RIGHT"),
 	"cancel": tr("KEYBIND_CANCEL"),
 	"interact": tr("KEYBIND_INTERACT"),
-	"ability_1": tr("KEYBIND_ABILITY1"),
-	"ability_2": tr("KEYBIND_ABILITY2"),
-	"ability_3": tr("KEYBIND_ABILITY3"),
-	"ability_4": tr("KEYBIND_ABILITY4"),
 	"primary_action": tr("KEYBIND_PRIMARY_ACTION"),
 	"secondary_action": tr("KEYBIND_SECONDARY_ACTION"),
 }
@@ -18,11 +14,14 @@ extends Node
 var action_to_remap: StringName;
 var is_remapping: bool = false;
 var remapping_button: InputRemappingButton = null;
-var dictionary_path: String = "res://input_prompts/input_prompts.json"
+var dictionary_path: String = "res://tools/input_prompts/input_prompts.json"
 
 var keys: Dictionary:
 	get:
 		if !keys:
+			if !FileAccess.file_exists(dictionary_path):
+				Debug.message("There is no file at %s" % dictionary_path);
+				return {};
 			keys = FileUtils.load_json(dictionary_path)
 		return keys;
 
