@@ -10,7 +10,6 @@ func _init() -> void:
 	timer.wait_time = 0.1;
 	
 	SceneManager.instance.add_child(timer)
-	timer.call_deferred("start");
 
 func queue(scene_info: SceneInfo) -> void:
 	if timer.is_stopped():
