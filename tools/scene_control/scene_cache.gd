@@ -2,9 +2,10 @@ class_name SceneCache extends Node
 
 var cached_scenes: Array[SceneInfo] = [];
 var loading_queue: Array[SceneInfo] = [];
+var timer: Timer;
 	
 func _init() -> void:
-	var timer: Timer = Timer.new();
+	timer = Timer.new();
 	timer.timeout.connect(_check_progress)
 	timer.wait_time = 0.1;
 	
@@ -12,6 +13,9 @@ func _init() -> void:
 	timer.call_deferred("start");
 
 func queue(scene_info: SceneInfo) -> void:
+	if timer.is_stopped():
+		timer.start();
+	
 	loading_queue.append(scene_info);
 	var error: Error = ResourceLoader.load_threaded_request(scene_info.packed_scene, type_string(typeof(PackedScene)))
 	if error:
@@ -25,6 +29,9 @@ func _check_progress() -> void:
 			cached_scenes.append(loading)
 			loading_queue.erase(loading)
 			loading.cached.emit(loading);
+			
+			if loading_queue.size() == 0:
+				timer.stop();
 
 func get_from_cache(scene_info: SceneInfo) -> Node:
 	if cached_scenes.has(scene_info):
