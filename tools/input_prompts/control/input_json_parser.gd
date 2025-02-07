@@ -1,5 +1,5 @@
 @tool
-class_name InputDisplayer extends CustomTextureRect
+class_name InputDisplayerRect extends CustomTextureRect
 
 @export_file("*.json") var dictionary_path: String;
 var _keys: Dictionary:

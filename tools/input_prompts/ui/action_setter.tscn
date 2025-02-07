@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://kikgjf07aidw"]
+
+[ext_resource type="Script" uid="uid://dggawino5xwhs" path="res://tools/input_prompts/remap/rebind_mapper.gd" id="1_yigko"]
+[ext_resource type="Texture2D" uid="uid://c653klst5pel0" path="res://tools/input_prompts/tilemap.png" id="2_p5kdy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bnle"]
+atlas = ExtResource("2_p5kdy")
+region = Rect2(0, 0, 16, 16)
+
+[node name="action_setter" type="Button" node_paths=PackedStringArray("action_name", "action_image", "rebinding_text")]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yigko")
+action_name = NodePath("MarginContainer/HBoxContainer/action_label")
+action_image = NodePath("MarginContainer/HBoxContainer/action_prompt")
+rebinding_text = NodePath("MarginContainer/HBoxContainer/rebind_prompt")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+
+[node name="action_label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+text = "action name"
+vertical_alignment = 1
+
+[node name="action_prompt" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6bnle")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="rebind_prompt" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Press key to bind..."
