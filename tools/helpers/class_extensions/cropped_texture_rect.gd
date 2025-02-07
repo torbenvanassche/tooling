@@ -10,9 +10,8 @@ class_name CustomTextureRect extends Control
 		queue_redraw()
 
 func _draw() -> void:
-	if origin_rect.size == Vector2.ZERO:
-		Debug.err("Drawing a CustomTextureRect without size will cause issues!")
-		origin_rect.size = sprite_size;
+	if origin_rect.size == Vector2.ZERO || !texture:
+		return;
 	
 	size.x = size_override_x * origin_rect.size.x / origin_rect.size.y;
 	size.y = size.x * (origin_rect.size.y / origin_rect.size.x)
