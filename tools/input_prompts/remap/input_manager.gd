@@ -15,7 +15,13 @@ var action_to_remap: StringName;
 var is_remapping: bool = false;
 var remapping_button: InputRemappingButton = null;
 var dictionary_path: String = "res://tools/input_prompts/input_prompts.json"
-var is_keyboard: bool = true;
+
+signal input_mode_changed(is_kb: bool);
+var is_keyboard: bool:
+	set(value):
+		if is_keyboard != value:
+			is_keyboard = value
+			input_mode_changed.emit(value)
 
 var keys: Dictionary:
 	get:

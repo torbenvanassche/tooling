@@ -2,19 +2,25 @@ class_name GameConfig extends Node
 
 var config := ConfigFile.new();
 const FILE_PATH = "user://settings.ini"
-const KEYBIND = "keybinds"
+
+const KEYBIND_KB = "keybinds_keyboard"
+const KEYBIND_CON = "keybinds_controller"
 
 func _ready() -> void:
 	if !FileAccess.file_exists(FILE_PATH):
 		for keybind: String in InputManager.mappable_actions:
 			var events: Array[InputEvent] = InputMap.action_get_events(keybind);
-			if events.size() > 0:
+			for event in events:
 				var key: String;
-				if events[0] is InputEventKey:
-					key = OS.get_keycode_string(events[0].physical_keycode).to_lower()
-				elif events[0] is InputEventMouseButton:
-					key = "mouse_" + str(events[0].button_index);
-				config.set_value(KEYBIND, keybind, key)
+				if event is InputEventKey:
+					key = OS.get_keycode_string(event.physical_keycode).to_lower()
+					config.set_value(KEYBIND_KB, keybind, key)
+				elif event is InputEventMouseButton:
+					key = "mouse_" + str(event.button_index);
+					config.set_value(KEYBIND_KB, keybind, key)
+				elif event is InputEventJoypadButton:
+					key = "button_" + str(event.button_index)
+					config.set_value(KEYBIND_CON, keybind, key)
 		config.save(FILE_PATH)
 	else:
 		config.load(FILE_PATH)
@@ -25,18 +31,18 @@ func change_keybinding(action: StringName, event: InputEvent) -> void:
 		event_str = OS.get_keycode_string(event.physical_keycode);
 	elif event is InputEventMouseButton:
 		event_str = "mouse_" + str(event.button_index);
-	config.set_value(KEYBIND, action, event_str);
+	config.set_value(KEYBIND_KB, action, event_str);
 	
 func save() -> void:
 	config.save(FILE_PATH);
 
 func load_keybindings() -> Dictionary:
 	var keybindings: Dictionary = {};
-	if config.has_section(KEYBIND):
-		var keys: PackedStringArray = config.get_section_keys(KEYBIND);
+	if config.has_section(KEYBIND_KB):
+		var keys: PackedStringArray = config.get_section_keys(KEYBIND_KB);
 		for key in keys:
 			var input_event: InputEvent;
-			var event_str: String = config.get_value(KEYBIND, key);
+			var event_str: String = config.get_value(KEYBIND_KB, key);
 		
 			if event_str.contains("mouse_"):
 				input_event = InputEventMouseButton.new();
