@@ -15,6 +15,7 @@ var action_to_remap: StringName;
 var is_remapping: bool = false;
 var remapping_button: InputRemappingButton = null;
 var dictionary_path: String = "res://tools/input_prompts/input_prompts.json"
+var is_keyboard: bool = true;
 
 var keys: Dictionary:
 	get:
