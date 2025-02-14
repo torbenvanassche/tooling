@@ -37,11 +37,22 @@ func get_key(key: String) -> Array:
 	return result if result != null else []
 
 func set_action(action: StringName, event: InputEvent) -> void:
-	InputMap.action_erase_events(action);
-	InputMap.action_add_event(action, event)
+	var action_split: PackedStringArray = action.split(".");
+	var mapped_actions := InputMap.action_get_events(action_split[1]);
+	
+	var to_remove: InputEvent;
+	for mapped_action in mapped_actions:
+		if action_split[0] == "con":
+			to_remove = mapped_actions.filter(func(x: InputEvent) -> bool: return x is InputEventJoypadButton|| x is InputEventJoypadMotion)[0];
+		elif action_split[0] == "kb":
+			to_remove = mapped_actions.filter(func(x: InputEvent) -> bool: return x is InputEventKey || x is InputEventMouseButton)[0];
+			
+	if action_split[1] != "":
+		InputMap.action_erase_event(action_split[1], to_remove);
+		InputMap.action_add_event(action_split[1], event)
 
 func replace_action(action: StringName, event: InputEvent) -> void:
-	set_action(action, event)
+	set_action("kb." if is_keyboard else "con." + action, event)
 	remapping_button.set_key(event.as_text().trim_suffix(" (Physical)").to_lower(), event)
 	Config.change_keybinding(action_to_remap, event)
 	

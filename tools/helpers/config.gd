@@ -51,5 +51,11 @@ func load_keybindings() -> Dictionary:
 				input_event = InputEventKey.new();
 				input_event.keycode = OS.find_keycode_from_string(event_str);
 			
-			keybindings[key] = input_event;
+			keybindings["kb." + key] = input_event;
+	if config.has_section(KEYBIND_CON):
+		var keys: PackedStringArray = config.get_section_keys(KEYBIND_CON);
+		for key in keys:
+			var input_event: InputEventJoypadButton = InputEventJoypadButton.new();
+			input_event.button_index = int(config.get_value(KEYBIND_CON, key));
+			keybindings["con." + key] = input_event;
 	return keybindings;

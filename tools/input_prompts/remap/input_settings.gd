@@ -34,9 +34,9 @@ func _reset_bindings() -> void:
 		var btn: InputRemappingButton = keybind_template.instantiate();
 		btn.set_label(InputManager.mappable_actions[action]);
 		var events: Array[InputEvent] = InputMap.action_get_events(action);
-		if events.size() > 0:
-			var key: String = events[0].as_text().to_lower();
-			btn.set_key(key, events[0]);
+		for event in events:
+			var key: String = event.as_text().to_lower();
+			btn.set_key(key, event);
 		
 		keybind_container.add_child(btn);
 		btn.pressed.connect(_on_rebind_key.bind(btn, action))
@@ -54,7 +54,7 @@ func _on_rebind_key(button: InputRemappingButton, action: String) -> void:
 		button.set_rebinding()
 		
 func _input(event: InputEvent) -> void:
-	InputManager.is_keyboard = event is InputEventKey || (event is InputEventMouseButton && event.pressed);
+	InputManager.is_keyboard = event is InputEventKey;
 	
 	if InputManager.is_remapping:
 		if event is InputEventKey || (event is InputEventMouseButton && event.pressed) || event is InputEventJoypadButton || event is InputEventJoypadMotion:

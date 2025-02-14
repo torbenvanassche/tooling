@@ -1,9 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://kikgjf07aidw"]
+[gd_scene load_steps=5 format=3 uid="uid://kikgjf07aidw"]
 
 [ext_resource type="Script" uid="uid://dggawino5xwhs" path="res://tools/input_prompts/remap/rebind_mapper.gd" id="1_yigko"]
 [ext_resource type="Texture2D" uid="uid://c653klst5pel0" path="res://tools/input_prompts/tilemap.png" id="2_p5kdy"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6bnle"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyxif"]
+resource_local_to_scene = true
+atlas = ExtResource("2_p5kdy")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52yet"]
+resource_local_to_scene = true
 atlas = ExtResource("2_p5kdy")
 region = Rect2(0, 0, 16, 16)
 
@@ -46,13 +52,13 @@ vertical_alignment = 1
 
 [node name="action_prompt_keyboard" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_6bnle")
+texture = SubResource("AtlasTexture_uyxif")
 expand_mode = 2
 stretch_mode = 4
 
 [node name="action_prompt_controller" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_6bnle")
+texture = SubResource("AtlasTexture_52yet")
 expand_mode = 2
 stretch_mode = 4
 
