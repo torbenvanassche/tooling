@@ -17,7 +17,7 @@ var remapping_button: InputRemappingButton = null;
 var dictionary_path: String = "res://tools/input_prompts/input_prompts.json"
 
 signal input_mode_changed(is_kb: bool);
-var is_keyboard: bool:
+var is_keyboard: bool = true:
 	set(value):
 		if is_keyboard != value:
 			is_keyboard = value

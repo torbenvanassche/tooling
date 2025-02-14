@@ -54,7 +54,7 @@ func _on_rebind_key(button: InputRemappingButton, action: String) -> void:
 		button.set_rebinding()
 		
 func _input(event: InputEvent) -> void:
-	InputManager.is_keyboard = event is InputEventKey;
+	InputManager.is_keyboard = event is InputEventKey || event is InputEventMouseButton || event is InputEventMouseMotion;
 	
 	if InputManager.is_remapping:
 		if event is InputEventKey || (event is InputEventMouseButton && event.pressed) || event is InputEventJoypadButton || event is InputEventJoypadMotion:
