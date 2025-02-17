@@ -6,14 +6,13 @@ var data: Array[ContentSlot] = [];
 @export var max_slots: int = 1;
 @export var stack_size: int = 1;
 
-signal on_item_add_failed();
-
 func _ready() -> void:
 	for i in range(max_slots):
 		data.append(ContentSlot.new(0, null, stack_size, i < unlocked_slots))
 		
-func get_available_slots(content: Node) -> Array[ContentSlot]:
-	return data.filter(func(slot: ContentSlot) -> bool: return slot.is_unlocked && slot.match_or_empty(content))
+func get_available_slots(content: Resource, exclude_full: bool = false) -> Array[ContentSlot]:
+	return data.filter(func(slot: ContentSlot) -> bool: 
+		return slot.is_unlocked && slot.match_or_empty(content) && (!exclude_full || !slot.is_full()))
 	
 func create_or_unlock_slot() -> ContentSlot:
 	for slot in data:
@@ -24,22 +23,23 @@ func create_or_unlock_slot() -> ContentSlot:
 	data.append(new_slot);
 	return new_slot;
 	
-func add_item(content: Node, amount: int = 1, can_exceed_capacity: bool = false) -> int:
+func add_item(content: Resource, amount: int = 1, can_exceed_capacity: bool = false) -> int:
 	var remaining_amount: int = amount;
-	while remaining_amount > 0:
-		var slots: Array[ContentSlot] = get_available_slots(content);
+	var call_amount: int = data.size();
+	while remaining_amount > 0 && call_amount > 0:
+		var slots: Array[ContentSlot] = get_available_slots(content, true);
 		if slots.size() == 0:
 			if can_exceed_capacity:
 				create_or_unlock_slot()
 				continue;
 			break;
 			
+		print(slots)
 		remaining_amount = slots[0].add(remaining_amount, content);
-	if remaining_amount != 0:
-		on_item_add_failed.emit()
+		call_amount -= 1;
 	return remaining_amount;
 
-func remove_item(content: Node, amount: int = 1) -> int:
+func remove_item(content: Resource, amount: int = 1) -> int:
 	var remaining_amount: int = amount;
 	while remaining_amount > 0:
 		var slots: Array[ContentSlot] = get_available_slots(content);
