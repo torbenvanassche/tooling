@@ -102,7 +102,8 @@ func reset_to_scene(scene_name: String) -> void:
 func to_previous_scene(stop_processing_current: bool = false, _remove_current: bool = false) -> void:
 	if scene_stack.size() != 0:
 		scene_stack.pop_back();
-		load_scene(scene_stack[scene_stack.size() - 1].id, SceneConfig.new(stop_processing_current));
+		if scene_stack.size() != 0:
+			load_scene(scene_stack[scene_stack.size() - 1].id, SceneConfig.new(stop_processing_current, false, _remove_current));
 		
 func ui_is_open(exceptions: Array[String]) -> bool:
 	return get_children().all(func(x: Node) -> bool: return node_to_info(x).is_ui && x.visible && !exceptions.has(node_to_info(x).id));

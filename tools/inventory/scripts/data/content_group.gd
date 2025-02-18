@@ -6,6 +6,8 @@ var data: Array[ContentSlot] = [];
 @export var max_slots: int = 1;
 @export var stack_size: int = 1;
 
+signal changed();
+
 func _ready() -> void:
 	for i in range(max_slots):
 		data.append(ContentSlot.new(0, null, stack_size, i < unlocked_slots))
@@ -23,7 +25,7 @@ func create_or_unlock_slot() -> ContentSlot:
 	data.append(new_slot);
 	return new_slot;
 	
-func add_item(content: Resource, amount: int = 1, can_exceed_capacity: bool = false) -> int:
+func add(content: Resource, amount: int = 1, can_exceed_capacity: bool = false) -> int:
 	var remaining_amount: int = amount;
 	var call_amount: int = data.size();
 	while remaining_amount > 0 && call_amount > 0:
@@ -33,17 +35,17 @@ func add_item(content: Resource, amount: int = 1, can_exceed_capacity: bool = fa
 				create_or_unlock_slot()
 				continue;
 			break;
-			
-		print(slots)
 		remaining_amount = slots[0].add(remaining_amount, content);
 		call_amount -= 1;
+	changed.emit();
 	return remaining_amount;
 
-func remove_item(content: Resource, amount: int = 1) -> int:
+func remove(content: Resource, amount: int = 1) -> int:
 	var remaining_amount: int = amount;
 	while remaining_amount > 0:
 		var slots: Array[ContentSlot] = get_available_slots(content);
 		if slots.size() == 0:
 			break;
 		remaining_amount = slots[0].remove(remaining_amount);
+	changed.emit();
 	return remaining_amount;

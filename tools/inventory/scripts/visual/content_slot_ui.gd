@@ -1,0 +1,63 @@
+class_name ContentSlotUI extends Button
+
+@onready var textureRect: TextureRect = $margin_container/item_sprite;
+@onready var counter: Label = $margin_container/count;
+var contentSlot: ContentSlot;
+
+@export var default_color: Color = Color(Color.WHITE)
+@export var dragging_color: Color = Color(Color.WHITE, 0.3)
+
+func _ready() -> void:
+	contentSlot.changed.connect(redraw)
+	self.disabled = !contentSlot.is_unlocked;
+	
+func redraw() -> void:
+	textureRect.modulate = default_color;
+	var resource := contentSlot.get_content()
+	if resource is ItemResource:
+		if "texture" in resource:
+			textureRect.texture = resource.texture;
+		counter.visible = true;
+		counter.text = str(contentSlot.count);
+	else:
+		textureRect.texture = null;
+		counter.text = "";
+
+var show_amount: bool = true:
+	set(value):
+		counter.visible = value;
+		show_amount = value;
+
+func blur() -> void:
+	textureRect.modulate = dragging_color;
+	counter.visible = false;
+	
+func set_content(_content: ContentSlot) -> void:
+	self.contentSlot = _content;
+
+func _get_drag_data(_at_position: Vector2) -> DragData:
+	if !contentSlot.has_content(null):
+		blur();
+		return DragData.new(self);
+	return null;
+	
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	var typed_data: DragData = data as DragData;
+	return contentSlot.is_unlocked;
+
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	var src_slot: ContentSlot = (data as DragData).slot.contentSlot
+	var dest_slot: ContentSlot = contentSlot
+	
+	if dest_slot.has_content(null) or dest_slot.has_content(src_slot.get_content()):
+		src_slot.remove(src_slot.count - dest_slot.add(src_slot.count, src_slot.get_content()))
+	else:
+		var dest_content: Resource = dest_slot.get_content();
+		dest_slot.set_content(src_slot.get_content());
+		src_slot.set_content(dest_content)
+		
+func _notification(what: int) -> void:
+	match what:
+		NOTIFICATION_DRAG_END:
+			if !is_drag_successful():
+				redraw()

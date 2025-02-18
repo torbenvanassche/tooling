@@ -1,25 +1,35 @@
-[gd_scene load_steps=7 format=3 uid="uid://cv403ext7qdnq"]
+[gd_scene load_steps=10 format=3 uid="uid://cv403ext7qdnq"]
 
 [ext_resource type="Script" uid="uid://bjmqfmubsvlhc" path="res://tools/scene_control/scene_manager.gd" id="1_hlsir"]
 [ext_resource type="Script" uid="uid://bx0br2fpije6a" path="res://tools/scene_control/scene_info.gd" id="2_hfxal"]
-[ext_resource type="Resource" uid="uid://ctoh3jiwqa38y" path="res://resources/scene_info/scene_1.tres" id="3_yvc4v"]
-[ext_resource type="Resource" uid="uid://cyq0msle4ltos" path="res://resources/scene_info/scene_2.tres" id="4_1ixus"]
 [ext_resource type="Resource" uid="uid://bpv5kigxjdnws" path="res://tools/input_prompts/keybind_menu.tres" id="5_3pfto"]
-[ext_resource type="Script" uid="uid://b6rgx41co3bur" path="res://tools/inventory/scripts/inventory.gd" id="6_80h2t"]
+[ext_resource type="Resource" uid="uid://q6dpwnagxwkt" path="res://resources/scene_info/test.tres" id="5_ots81"]
+[ext_resource type="Script" uid="uid://b6rgx41co3bur" path="res://tools/inventory/scripts/inventory/inventory.gd" id="6_80h2t"]
+[ext_resource type="Script" uid="uid://dlmdxad63hfp4" path="res://tools/inventory/scripts/resource_manager.gd" id="7_ots81"]
+[ext_resource type="Script" uid="uid://b7abj72lp5qu5" path="res://tools/inventory/scripts/inventory/item_resource.gd" id="8_mcfjq"]
+[ext_resource type="Resource" uid="uid://dje7oqal6du1f" path="res://resources/item_data/wheat.tres" id="9_cf3er"]
+[ext_resource type="Resource" uid="uid://d0n3c4su05ltv" path="res://resources/item_data/mythril.tres" id="9_g4pdp"]
 
 [node name="game_root" type="Node"]
 
-[node name="scene_manager" type="Node" parent="." node_paths=PackedStringArray("root")]
-script = ExtResource("1_hlsir")
-scenes = Array[ExtResource("2_hfxal")]([ExtResource("3_yvc4v"), ExtResource("4_1ixus"), ExtResource("5_3pfto")])
-initial_scene = ExtResource("5_3pfto")
-root = NodePath("../content")
-metadata/_custom_type_script = ExtResource("1_hlsir")
+[node name="game_manager" type="Node" parent="."]
 
-[node name="content" type="Node" parent="."]
-
-[node name="inventory" type="Node" parent="."]
+[node name="inventory" type="Node" parent="game_manager"]
 script = ExtResource("6_80h2t")
 unlocked_slots = 2
 max_slots = 10
-metadata/_custom_type_script = ExtResource("6_80h2t")
+metadata/_custom_type_script = "uid://b6rgx41co3bur"
+
+[node name="scene_manager" type="Node" parent="game_manager" node_paths=PackedStringArray("root")]
+script = ExtResource("1_hlsir")
+scenes = Array[ExtResource("2_hfxal")]([ExtResource("5_3pfto"), ExtResource("5_ots81")])
+initial_scene = ExtResource("5_ots81")
+root = NodePath("../../content")
+metadata/_custom_type_script = "uid://bjmqfmubsvlhc"
+
+[node name="resource_manager" type="Node" parent="game_manager"]
+script = ExtResource("7_ots81")
+items = Array[ExtResource("8_mcfjq")]([ExtResource("9_g4pdp"), ExtResource("9_cf3er")])
+metadata/_custom_type_script = "uid://dlmdxad63hfp4"
+
+[node name="content" type="Node" parent="."]
