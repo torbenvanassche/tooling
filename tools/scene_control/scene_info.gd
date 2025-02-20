@@ -7,3 +7,9 @@ extends Resource
 var node: Node;
 
 signal cached(scene_info: SceneInfo);
+
+func release() -> void:
+	SceneManager.instance.scene_cache.remove(self);
+
+func remove() -> void:
+	node.get_parent().remove_child(node);

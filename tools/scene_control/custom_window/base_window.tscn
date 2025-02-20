@@ -59,3 +59,8 @@ expand_icon = true
 layout_mode = 2
 size_flags_vertical = 3
 color = Color(0.666667, 0.666667, 0.666667, 1)
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

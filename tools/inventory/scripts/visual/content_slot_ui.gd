@@ -10,6 +10,7 @@ var contentSlot: ContentSlot;
 func _ready() -> void:
 	contentSlot.changed.connect(redraw)
 	self.disabled = !contentSlot.is_unlocked;
+	counter.text = "";
 	
 func redraw() -> void:
 	textureRect.modulate = default_color;

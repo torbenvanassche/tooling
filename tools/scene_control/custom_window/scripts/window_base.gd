@@ -86,7 +86,7 @@ func handle_input(event: InputEvent) -> void:
 func close_window() -> void:
 	if store_position:
 		stored_position = position;
-	SceneManager.instance.to_previous_scene(false, true);
+	SceneManager.instance.remove_scene(self, false);
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel") && visible:

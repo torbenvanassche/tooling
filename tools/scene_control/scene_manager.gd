@@ -98,12 +98,18 @@ func reset_to_scene(scene_name: String) -> void:
 		if scene_info.id != scene_name && scene_info.node != null:
 			scene_info.node.queue_free()
 	load_scene(scene_name, SceneConfig.new())
-		
-func to_previous_scene(stop_processing_current: bool = false, _remove_current: bool = false) -> void:
+	
+func remove_scene(node: Node, permanent: bool) -> void:
+	if permanent:
+		node_to_info(node).release();
+	else:
+		node_to_info(node).remove();
+	
+func to_previous_scene() -> void:
 	if scene_stack.size() != 0:
 		scene_stack.pop_back();
 		if scene_stack.size() != 0:
-			load_scene(scene_stack[scene_stack.size() - 1].id, SceneConfig.new(stop_processing_current, false, _remove_current));
+			load_scene(scene_stack[scene_stack.size() - 1].id, SceneConfig.new(false, false, false));
 		
 func ui_is_open(exceptions: Array[String]) -> bool:
 	return get_children().all(func(x: Node) -> bool: return node_to_info(x).is_ui && x.visible && !exceptions.has(node_to_info(x).id));
