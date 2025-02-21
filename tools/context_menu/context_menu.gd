@@ -10,7 +10,7 @@ func _init(data: Array[ContextMenuItem]) -> void:
 	for index in range(data.size()):
 		var context_item := data[index];
 		add_item(context_item.id, index)
-		set_item_disabled(index, context_item.disabled)
+		set_item_disabled(index, !context_item.enabled)
 		context_item.idx = index;
 
 	menu_items = data
@@ -24,7 +24,7 @@ func add(cmi: ContextMenuItem) -> void:
 	var idx: int = menu_items.size();
 	if menu_items.filter(func(item: ContextMenuItem) -> bool: return item.idx == idx).size() == 0:	
 		add_item(cmi.id, idx)
-		set_item_disabled(idx, cmi.disabled)
+		set_item_disabled(idx, !cmi.enabled)
 		cmi.idx = idx;
 		menu_items.append(cmi);
 	
