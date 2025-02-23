@@ -1,6 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cv403ext7qdnq"]
+[gd_scene load_steps=13 format=3 uid="uid://cv403ext7qdnq"]
 
 [ext_resource type="Script" uid="uid://bjmqfmubsvlhc" path="res://tools/scene_control/scene_manager.gd" id="1_hlsir"]
+[ext_resource type="Script" uid="uid://dkouqngpedfhl" path="res://tools/game_manager.gd" id="1_mcfjq"]
+[ext_resource type="Resource" uid="uid://ihk5osb7d12y" path="res://tools/settings.tres" id="2_cf3er"]
 [ext_resource type="Script" uid="uid://bx0br2fpije6a" path="res://tools/scene_control/scene_info.gd" id="2_hfxal"]
 [ext_resource type="Resource" uid="uid://bpv5kigxjdnws" path="res://tools/input_prompts/keybind_menu.tres" id="5_3pfto"]
 [ext_resource type="Resource" uid="uid://q6dpwnagxwkt" path="res://resources/scene_info/test.tres" id="5_ots81"]
@@ -14,6 +16,8 @@
 [node name="game_root" type="Node"]
 
 [node name="game_manager" type="Node" parent="."]
+script = ExtResource("1_mcfjq")
+settings = ExtResource("2_cf3er")
 
 [node name="inventory" type="Node" parent="game_manager"]
 script = ExtResource("6_80h2t")

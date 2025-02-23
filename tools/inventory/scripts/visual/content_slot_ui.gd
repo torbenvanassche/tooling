@@ -62,3 +62,12 @@ func _notification(what: int) -> void:
 		NOTIFICATION_DRAG_END:
 			if !is_drag_successful():
 				redraw()
+				
+func _gui_input(_event: InputEvent) -> void:
+	if _event is InputEventMouseButton and _event.is_pressed() and _event.button_index == MOUSE_BUTTON_RIGHT && !contentSlot.has_content(null):
+		var mouse_position := get_global_mouse_position();
+		var context := ContextMenu.new([
+			ContextMenuItem.new("Test", print.bind("test"), 0)
+			])
+		add_child(context);
+		context.open(Vector2(mouse_position.x, mouse_position.y))

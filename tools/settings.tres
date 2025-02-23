@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Settings" load_steps=2 format=3 uid="uid://ihk5osb7d12y"]
+
+[ext_resource type="Script" uid="uid://bpne5o14hn4nk" path="res://tools/helpers/settings.gd" id="1_rbi7c"]
+
+[resource]
+script = ExtResource("1_rbi7c")
+camera_zoom_sensitivity = 0.5
+camera_follow_speed = 1.0
+close_context_on_mouse_exit = true
+master_volume = 1.0
+metadata/_custom_type_script = "uid://bpne5o14hn4nk"
