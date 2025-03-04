@@ -18,6 +18,7 @@ var initial_position: Vector2;
 @export var override_position: Vector2;
 @export var override_size: Vector2;
 @export var return_on_close: bool = true;
+@export var topbar_height: int = 50;
 
 signal close_requested();
 signal change_title(name: String);
@@ -33,7 +34,7 @@ func _ready() -> void:
 	
 	if override_size != Vector2.ZERO:
 		self.set_deferred("size", override_size)
-		top_bar.custom_minimum_size = Vector2(override_size.x, 50)
+		top_bar.custom_minimum_size = Vector2(override_size.x, topbar_height)
 		content_panel.custom_minimum_size = Vector2(override_size.x, override_size.y - top_bar.size.y)
 	
 func on_enable(options: Dictionary = {}) -> void:
@@ -86,7 +87,7 @@ func handle_input(event: InputEvent) -> void:
 func close_window() -> void:
 	if store_position:
 		stored_position = position;
-	SceneManager.instance.remove_scene(self, false);
+	SceneManager.instance.remove_scene(SceneManager.instance.node_to_info(self), false);
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel") && visible:
