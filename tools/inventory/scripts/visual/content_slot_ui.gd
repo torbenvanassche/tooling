@@ -39,11 +39,17 @@ func set_content(_content: ContentSlot) -> void:
 func _get_drag_data(_at_position: Vector2) -> DragData:
 	if !contentSlot.has_content(null):
 		blur();
+		
+		var preview := TextureRect.new();
+		preview.texture = self.textureRect.texture;
+		preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		preview.size = Vector2(50, 50);
+		set_drag_preview(preview)
+		
 		return DragData.new(self);
 	return null;
 	
-func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-	var typed_data: DragData = data as DragData;
+func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
 	return contentSlot.is_unlocked;
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
@@ -68,9 +74,7 @@ func _gui_input(_event: InputEvent) -> void:
 		var mouse_position := get_global_mouse_position();
 		var context := ContextMenu.new([
 			ContextMenuItem.new("Test", print.bind("test")),
-			ContextMenuItem.new("Test2", print.bind("test2"), 
-				ContextMenu.new([
-					ContextMenuItem.new("Test3", print.bind("test3"))]))
-			])
+			ContextMenuItem.new("Test2", print.bind("test2"))
+		])
 		add_child(context);
 		context.open(Vector2(mouse_position.x, mouse_position.y))
