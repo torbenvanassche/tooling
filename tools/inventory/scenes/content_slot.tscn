@@ -32,8 +32,6 @@ theme_type_variation = &"FlatButton"
 toggle_mode = true
 alignment = 2
 script = ExtResource("2_rfq8a")
-default_color = null
-dragging_color = null
 
 [node name="margin_container" type="MarginContainer" parent="."]
 layout_mode = 1

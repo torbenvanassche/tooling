@@ -37,7 +37,7 @@ func _ready() -> void:
 		top_bar.custom_minimum_size = Vector2(override_size.x, topbar_height)
 		content_panel.custom_minimum_size = Vector2(override_size.x, override_size.y - top_bar.size.y)
 	
-func on_enable(options: Dictionary = {}) -> void:
+func on_enable(_options: Dictionary = {}) -> void:
 	if visible:
 		return
 	visible = true;

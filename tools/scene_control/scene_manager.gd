@@ -66,7 +66,7 @@ func _on_scene_load(scene_info: SceneInfo, scene_config: SceneConfig) -> void:
 	_active_scene = scene_info.node;
 	_active_scene.visible = true;
 	if scene_config.add_to_stack:
-		scene_stack.append(scene_info.node)
+		scene_stack.append(scene_info)
 	if _active_scene.has_method("on_enable"):
 		_active_scene.on_enable()
 		_active_scene.set_deferred("process_mode", Node.PROCESS_MODE_PAUSABLE)

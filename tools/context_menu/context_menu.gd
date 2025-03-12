@@ -11,8 +11,6 @@ func _init(data: Array[ContextMenuItem] = []) -> void:
 func _ready() -> void:
 	close_requested.connect(_on_close)
 	index_pressed.connect(_on_idx)
-	if Manager.instance.settings.close_context_on_mouse_exit:
-		mouse_exited.connect(_on_close)
 
 func add(cmi: ContextMenuItem) -> void:
 	menu_items.append(cmi)

@@ -7,23 +7,23 @@ var is_unlocked: bool = false;
 
 signal changed();
 
-func _init(count: int = 0, _content: Resource = null, _maxcount: int = 1, _unlocked: bool = true) -> void:
+func _init(_count: int = 0, content: Resource = null, maxcount: int = 1, _unlocked: bool = true) -> void:
 	self.is_unlocked = _unlocked;
-	self._maxcount = _maxcount;
-	set_content(_content);
-	self.count = count;
+	self._maxcount = maxcount;
+	set_content(content);
+	self.count = _count;
 	
-func set_content(_content: Resource) -> void:
-	self._content = _content;
+func set_content(content: Resource) -> void:
+	self._content = content;
 	changed.emit();
 	
 func get_content() -> Resource:
 	return _content;
 	
-func set_stack_size(max: int = 1) -> void:
-	self._maxcount = max;
+func set_stack_size(max_size: int = 1) -> void:
+	self._maxcount = max_size;
 	
-func can_add(content: Resource, amount: int) -> bool:
+func can_add(content: Resource) -> bool:
 	return content != self._content && !is_full();
 
 func add(amount: int = 1, content: Resource = null) -> int:
