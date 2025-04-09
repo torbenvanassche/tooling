@@ -1,14 +1,17 @@
 class_name SceneManager
 extends Node
 
+@export var initial_scene: SceneInfo;
+
+@export_group("Data Setup") 
 @export var scenes: Array[SceneInfo];
+@onready var root: Node = $"../../content";
+static var instance: SceneManager;
+@export var _ui: Node;
+
 var scene_stack: Array[SceneInfo] = [];
 var scene_cache: SceneCache;
 
-@export var initial_scene: SceneInfo;
-@export var root: Node;
-static var instance: SceneManager;
-@export var _ui: Node;
 
 signal scene_entered(scene: Node)
 signal scene_exited(scene: Node)

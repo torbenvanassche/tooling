@@ -20,7 +20,6 @@ func _load_default() -> void:
 	for action: String in InputManager.mappable_actions:
 		var events: Array[InputEvent] = InputMap.action_get_events(action);
 		if events.size() > 0:
-			var key: String = events[0].as_text().trim_suffix(" (Physical)").to_lower();
 			Config.change_keybinding(action, events[0]);
 	
 func _on_save() -> void:

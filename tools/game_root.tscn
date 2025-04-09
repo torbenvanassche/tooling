@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cv403ext7qdnq"]
+[gd_scene load_steps=12 format=3 uid="uid://cv403ext7qdnq"]
 
 [ext_resource type="Script" uid="uid://bjmqfmubsvlhc" path="res://tools/scene_control/scene_manager.gd" id="1_hlsir"]
 [ext_resource type="Script" uid="uid://dkouqngpedfhl" path="res://tools/game_manager.gd" id="1_mcfjq"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://b7abj72lp5qu5" path="res://tools/inventory/scripts/inventory/item_resource.gd" id="8_mcfjq"]
 [ext_resource type="Resource" uid="uid://dje7oqal6du1f" path="res://resources/item_data/wheat.tres" id="9_cf3er"]
 [ext_resource type="Resource" uid="uid://d0n3c4su05ltv" path="res://resources/item_data/mythril.tres" id="9_g4pdp"]
-[ext_resource type="PackedScene" uid="uid://g8cyqkretffu" path="res://tools/inventory/scenes/content_group.tscn" id="10_idfj3"]
 
 [node name="game_root" type="Node"]
 
@@ -25,11 +24,10 @@ unlocked_slots = 4
 max_slots = 10
 metadata/_custom_type_script = "uid://b6rgx41co3bur"
 
-[node name="scene_manager" type="Node" parent="game_manager" node_paths=PackedStringArray("root")]
+[node name="scene_manager" type="Node" parent="game_manager"]
 script = ExtResource("1_hlsir")
+initial_scene = ExtResource("5_3pfto")
 scenes = Array[ExtResource("2_hfxal")]([ExtResource("5_3pfto"), ExtResource("5_ots81")])
-initial_scene = ExtResource("5_ots81")
-root = NodePath("../../content")
 metadata/_custom_type_script = "uid://bjmqfmubsvlhc"
 
 [node name="resource_manager" type="Node" parent="game_manager"]
@@ -38,6 +36,3 @@ items = Array[ExtResource("8_mcfjq")]([ExtResource("9_g4pdp"), ExtResource("9_cf
 metadata/_custom_type_script = "uid://dlmdxad63hfp4"
 
 [node name="content" type="Node" parent="."]
-
-[node name="InventoryHud" parent="content" node_paths=PackedStringArray("inventory") instance=ExtResource("10_idfj3")]
-inventory = NodePath("../../game_manager/inventory")
