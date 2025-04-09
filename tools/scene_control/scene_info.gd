@@ -6,6 +6,7 @@ extends Resource
 @export var is_ui: bool = false;
 var node: Node;
 
+@warning_ignore("unused_signal") #false positive
 signal cached(scene_info: SceneInfo);
 
 func release() -> void:
