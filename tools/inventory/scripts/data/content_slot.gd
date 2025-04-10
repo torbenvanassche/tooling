@@ -8,34 +8,34 @@ var is_unlocked: bool = false;
 signal changed();
 
 func _init(_count: int = 0, content: Resource = null, maxcount: int = 1, _unlocked: bool = true) -> void:
-	self.is_unlocked = _unlocked;
-	self._maxcount = maxcount;
+	is_unlocked = _unlocked;
+	_maxcount = maxcount;
 	set_content(content);
-	self.count = _count;
+	count = _count;
 	
 func set_content(content: Resource) -> void:
-	self._content = content;
+	_content = content;
 	changed.emit();
 	
 func get_content() -> Resource:
 	return _content;
 	
 func set_stack_size(max_size: int = 1) -> void:
-	self._maxcount = max_size;
+	_maxcount = max_size;
 	
 func can_add(content: Resource) -> bool:
-	return content != self._content && !is_full();
+	return content != _content && !is_full();
 
 func add(amount: int = 1, content: Resource = null) -> int:
-	if self._content == null && content != null:
-		self._content = content;
+	if _content == null && content != null:
+		_content = content;
 	
-	if content != null && self._content != content:
+	if content != null && _content != content:
 		return amount;
 		
 	var remaining_space: int = _maxcount - count;
 	var amount_to_add: int = min(amount, remaining_space);
-	self.count += amount_to_add;
+	count += amount_to_add;
 	changed.emit();
 	return amount - amount_to_add;
 	
