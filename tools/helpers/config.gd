@@ -56,6 +56,6 @@ func load_keybindings() -> Dictionary:
 		var keys: PackedStringArray = config.get_section_keys(KEYBIND_CON);
 		for key in keys:
 			var input_event: InputEventJoypadButton = InputEventJoypadButton.new();
-			input_event.button_index = config.get_value(KEYBIND_CON, key) as Variant;
+			input_event.button_index = ((config.get_value(KEYBIND_CON, key) as String).split("_")[1] as int) as JoyButton;
 			keybindings["con." + key] = input_event;
 	return keybindings;

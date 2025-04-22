@@ -1,0 +1,14 @@
+keys,en,nl
+LANGUAGE,english,nederlands
+KEYBIND_MOVE_UP,move up,
+KEYBIND_MOVE_DOWN,move down,
+KEYBIND_MOVE_LEFT,move left,
+KEYBIND_MOVE_RIGHT,move right,
+KEYBIND_CANCEL,pause,
+KEYBIND_INTERACT,interact,
+KEYBIND_ABILITY1,ability slot 1,
+KEYBIND_ABILITY2,ability slot 2,
+KEYBIND_ABILITY3,ability slot 3,
+KEYBIND_ABILITY4,ability slot 4,
+KEYBIND_PRIMARY_ACTION,attack,
+KEYBIND_SECONDARY_ACTION,dodge,

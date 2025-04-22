@@ -5,10 +5,13 @@ extends Node
 	"back": tr("KEYBIND_MOVE_DOWN"),
 	"left": tr("KEYBIND_MOVE_LEFT"),
 	"right": tr("KEYBIND_MOVE_RIGHT"),
-	"cancel": tr("KEYBIND_CANCEL"),
-	"interact": tr("KEYBIND_INTERACT"),
+	"jump": tr("KEYBIND_JUMP"),
+	"crouch": tr("KEYBIND_CROUCH"),
+	"sprint": tr("KEYBIND_SPRINT"),
 	"primary_action": tr("KEYBIND_PRIMARY_ACTION"),
 	"secondary_action": tr("KEYBIND_SECONDARY_ACTION"),
+	"interact": tr("KEYBIND_INTERACT"),
+	"cancel": tr("KEYBIND_CANCEL")
 }
 
 var action_to_remap: StringName;

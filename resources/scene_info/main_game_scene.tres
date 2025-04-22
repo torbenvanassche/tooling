@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_spai1")
 id = "test"
-packed_scene = "uid://dny1dqcanlco0"
+packed_scene = "uid://8sw7av8cl2hk"
 is_ui = false
 metadata/_custom_type_script = "uid://bx0br2fpije6a"

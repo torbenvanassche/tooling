@@ -51,16 +51,18 @@ text = "action name"
 vertical_alignment = 1
 
 [node name="action_prompt_keyboard" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 texture = SubResource("AtlasTexture_uyxif")
 expand_mode = 2
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="action_prompt_controller" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 texture = SubResource("AtlasTexture_52yet")
 expand_mode = 2
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="rebind_prompt" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

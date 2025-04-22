@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://ihk5osb7d12y" path="res://tools/settings.tres" id="2_cf3er"]
 [ext_resource type="Script" uid="uid://bx0br2fpije6a" path="res://tools/scene_control/scene_info.gd" id="2_hfxal"]
 [ext_resource type="Resource" uid="uid://bpv5kigxjdnws" path="res://tools/input_prompts/keybind_menu.tres" id="5_3pfto"]
-[ext_resource type="Resource" uid="uid://q6dpwnagxwkt" path="res://resources/scene_info/test.tres" id="5_ots81"]
+[ext_resource type="Resource" uid="uid://q6dpwnagxwkt" path="res://resources/scene_info/main_game_scene.tres" id="5_ots81"]
 [ext_resource type="Script" uid="uid://b6rgx41co3bur" path="res://tools/inventory/scripts/inventory/inventory.gd" id="6_80h2t"]
 [ext_resource type="Script" uid="uid://dlmdxad63hfp4" path="res://tools/inventory/scripts/resource_manager.gd" id="7_ots81"]
 [ext_resource type="Script" uid="uid://b7abj72lp5qu5" path="res://tools/inventory/scripts/inventory/item_resource.gd" id="8_mcfjq"]
@@ -26,7 +26,7 @@ metadata/_custom_type_script = "uid://b6rgx41co3bur"
 
 [node name="scene_manager" type="Node" parent="game_manager"]
 script = ExtResource("1_hlsir")
-initial_scene = ExtResource("5_3pfto")
+initial_scene = ExtResource("5_ots81")
 scenes = Array[ExtResource("2_hfxal")]([ExtResource("5_3pfto"), ExtResource("5_ots81")])
 metadata/_custom_type_script = "uid://bjmqfmubsvlhc"
 

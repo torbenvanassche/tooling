@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfuyvy7hw3y1v"]
+
+[ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_8yw77"]
+[ext_resource type="Script" uid="uid://cljpugjgep3su" path="res://tools/player_controller/scripts/player_controller.gd" id="2_c2ve6"]
+[ext_resource type="Script" uid="uid://cxqrew203m76h" path="res://tools/player_controller/scripts/camera_controller.gd" id="2_nj1mu"]
+
+[node name="PlayerCharacter" instance=ExtResource("1_8yw77")]
+script = ExtResource("2_c2ve6")
+moveForwardAction = "forward"
+moveBackwardAction = "back"
+moveLeftAction = "left"
+moveRightAction = "right"
+runAction = "sprint"
+
+[node name="CameraHolder" parent="." index="0"]
+script = ExtResource("2_nj1mu")
+bobFrequency = 2.0
+bobAmplitude = 0.08
+mouseModeAction = "cancel"
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraHolder/Camera" index="0"]
+target_position = Vector3(0, 0, -1.5)
