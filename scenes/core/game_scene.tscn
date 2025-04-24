@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://8sw7av8cl2hk"]
+[gd_scene load_steps=11 format=3 uid="uid://8sw7av8cl2hk"]
 
 [ext_resource type="PackedScene" uid="uid://dfuyvy7hw3y1v" path="res://tools/player_controller/nodes/first_person_controller.tscn" id="1_fblwl"]
+[ext_resource type="Script" uid="uid://btc2gmjdk3dhp" path="res://tools/interactables/interactable.gd" id="2_5wdmw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fblwl"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -21,6 +22,14 @@ size = Vector3(20, 1, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_du4q6"]
 size = Vector3(20, 1, 20)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wdmw"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7w42k"]
+material = SubResource("StandardMaterial3D_5wdmw")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yehrc"]
+
 [node name="GameScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -39,4 +48,18 @@ mesh = SubResource("BoxMesh_du4q6")
 shape = SubResource("BoxShape3D_du4q6")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_fblwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54989, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." node_paths=PackedStringArray("click_area")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, 0)
+mesh = SubResource("BoxMesh_7w42k")
+skeleton = NodePath("Area3D")
+script = ExtResource("2_5wdmw")
+click_area = NodePath("Area3D")
+can_interact = true
+interactable_id = "box"
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/Area3D"]
+shape = SubResource("BoxShape3D_yehrc")

@@ -16,7 +16,14 @@ runAction = "sprint"
 script = ExtResource("2_nj1mu")
 bobFrequency = 2.0
 bobAmplitude = 0.08
+camTiltRotationValue = 0.05
 mouseModeAction = "cancel"
 
 [node name="RayCast3D" type="RayCast3D" parent="CameraHolder/Camera" index="0"]
-target_position = Vector3(0, 0, -1.5)
+target_position = Vector3(0, 0, -5)
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Polygon2D" type="Polygon2D" parent="HUD/Crosshair" index="0"]
+polygon = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
