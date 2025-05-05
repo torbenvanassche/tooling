@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://8sw7av8cl2hk"]
+[gd_scene load_steps=13 format=3 uid="uid://8sw7av8cl2hk"]
 
+[ext_resource type="Material" uid="uid://cviydsg8uwpcm" path="res://materials/color_in_area.tres" id="1_7w42k"]
 [ext_resource type="PackedScene" uid="uid://dfuyvy7hw3y1v" path="res://tools/player_controller/nodes/first_person_controller.tscn" id="1_fblwl"]
 [ext_resource type="Script" uid="uid://btc2gmjdk3dhp" path="res://tools/interactables/interactable.gd" id="2_5wdmw"]
+[ext_resource type="Material" uid="uid://dmja37y16b12d" path="res://materials/fresnel_effect.tres" id="4_yehrc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fblwl"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -22,13 +24,14 @@ size = Vector3(20, 1, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_du4q6"]
 size = Vector3(20, 1, 20)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wdmw"]
-albedo_color = Color(1, 0, 0, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_7w42k"]
-material = SubResource("StandardMaterial3D_5wdmw")
+material = ExtResource("1_7w42k")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yehrc"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_7w42k"]
+radius = 1.0
+height = 2.0
 
 [node name="GameScene" type="Node3D"]
 
@@ -40,7 +43,9 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0024271, 0.00607753, -0.00380409)
 mesh = SubResource("BoxMesh_du4q6")
+surface_material_override/0 = ExtResource("1_7w42k")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
@@ -51,7 +56,9 @@ shape = SubResource("BoxShape3D_du4q6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54989, 0)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." node_paths=PackedStringArray("click_area")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.70644, 3, 0)
+instance_shader_parameters/color_mode = 0
+instance_shader_parameters/tint_color = Color(1, 0, 0, 1)
 mesh = SubResource("BoxMesh_7w42k")
 skeleton = NodePath("Area3D")
 script = ExtResource("2_5wdmw")
@@ -63,3 +70,8 @@ interactable_id = "box"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/Area3D"]
 shape = SubResource("BoxShape3D_yehrc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.46069, 2.8881, 0.0693858)
+mesh = SubResource("SphereMesh_7w42k")
+surface_material_override/0 = ExtResource("4_yehrc")
