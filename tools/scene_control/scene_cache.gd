@@ -49,3 +49,5 @@ func remove(scene_info: SceneInfo) -> void:
 	if cached_scenes.has(scene_info):
 		get_from_cache(scene_info).queue_free();
 		cached_scenes.erase(scene_info);
+		if scene_info.node and not scene_info.node.is_queued_for_deletion():
+			scene_info.node.queue_free();

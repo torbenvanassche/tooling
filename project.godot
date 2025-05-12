@@ -94,6 +94,14 @@ jump={
 
 locale/translations=PackedStringArray("res://translations/translations.en.translation", "res://translations/translations.nl.translation")
 
+[layer_names]
+
+3d_render/layer_1="Default"
+3d_render/layer_2="red"
+3d_render/layer_3="green"
+3d_render/layer_4="blue"
+3d_physics/layer_4="Interactable"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

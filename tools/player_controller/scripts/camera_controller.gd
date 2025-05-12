@@ -4,7 +4,6 @@ extends CameraObject
 
 func _ready() -> void:
 	ray.collision_mask = Manager.instance.interactable_layer;
-	
 	super();
 	
 func _unhandled_input(event: InputEvent) -> void:

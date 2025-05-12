@@ -1,8 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://8sw7av8cl2hk"]
+[gd_scene load_steps=14 format=3 uid="uid://8sw7av8cl2hk"]
 
 [ext_resource type="Material" uid="uid://cviydsg8uwpcm" path="res://materials/color_in_area.tres" id="1_7w42k"]
 [ext_resource type="PackedScene" uid="uid://dfuyvy7hw3y1v" path="res://tools/player_controller/nodes/first_person_controller.tscn" id="1_fblwl"]
-[ext_resource type="Script" uid="uid://btc2gmjdk3dhp" path="res://tools/interactables/interactable.gd" id="2_5wdmw"]
+[ext_resource type="Script" uid="uid://bcnp2kxh82c5g" path="res://tools/interactables/interactable_in_render_layer.gd" id="3_yehrc"]
+[ext_resource type="Resource" uid="uid://dsrjw2lauoweq" path="res://tools/render_layer_tools/resources/green.tres" id="4_vvs44"]
+[ext_resource type="Resource" uid="uid://lo4835f5cf0j" path="res://tools/render_layer_tools/resources/red.tres" id="4_yehrc"]
+[ext_resource type="Resource" uid="uid://c5f8r8405622x" path="res://tools/render_layer_tools/resources/blue.tres" id="5_xfdvh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fblwl"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -27,7 +30,6 @@ size = Vector3(20, 1, 20)
 material = ExtResource("1_7w42k")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yehrc"]
-size = Vector3(2.38623, 2.07825, 2.43433)
 
 [node name="GameScene" type="Node3D"]
 
@@ -51,76 +53,57 @@ shape = SubResource("BoxShape3D_du4q6")
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_fblwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54989, 0)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." node_paths=PackedStringArray("click_area")]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.70644, 3, 0)
+layers = 4
 instance_shader_parameters/color_mode = 2
-instance_shader_parameters/tint_color = Color(0.15, 1, 0, 1)
+instance_shader_parameters/tint_color = Color(0.14902, 1, 0, 1)
 instance_shader_parameters/use_emission = false
 mesh = SubResource("BoxMesh_7w42k")
-skeleton = NodePath("Area3D")
-script = ExtResource("2_5wdmw")
-click_area = NodePath("Area3D")
-can_interact = true
-interactable_id = "box"
+skeleton = NodePath("clickable_area")
+script = ExtResource("3_yehrc")
+render_settings = ExtResource("4_vvs44")
 
-[node name="Area3D" type="Area3D" parent="MeshInstance3D2"]
+[node name="clickable_area" type="Area3D" parent="MeshInstance3D2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/clickable_area"]
 shape = SubResource("BoxShape3D_yehrc")
 debug_color = Color(0.923897, 2.74345e-05, 0.653355, 0.831373)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." node_paths=PackedStringArray("click_area")]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.70644, 3, -3)
+layers = 8
 instance_shader_parameters/color_mode = 2
 instance_shader_parameters/tint_color = Color(0, 0.2, 1, 1)
 instance_shader_parameters/use_emission = false
 mesh = SubResource("BoxMesh_7w42k")
-skeleton = NodePath("Area3D")
-script = ExtResource("2_5wdmw")
-click_area = NodePath("Area3D")
+skeleton = NodePath("clickable_area")
+script = ExtResource("3_yehrc")
+render_settings = ExtResource("5_xfdvh")
 can_interact = true
 interactable_id = "box"
 
-[node name="Area3D" type="Area3D" parent="MeshInstance3D3"]
+[node name="clickable_area" type="Area3D" parent="MeshInstance3D3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.853358, 0.00286794, -0.00545597)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/clickable_area"]
 shape = SubResource("BoxShape3D_yehrc")
 debug_color = Color(0.923897, 2.74345e-05, 0.653355, 0.831373)
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="." node_paths=PackedStringArray("click_area")]
-transform = Transform3D(0.36471, 0, 0, 0, 0.428967, 0, 0, 0, 0.551584, -4.08514, 3, -3)
-instance_shader_parameters/color_mode = 2
-instance_shader_parameters/tint_color = Color(0, 0.2, 1, 1)
-instance_shader_parameters/use_emission = false
-mesh = SubResource("BoxMesh_7w42k")
-skeleton = NodePath("Area3D")
-script = ExtResource("2_5wdmw")
-click_area = NodePath("Area3D")
-can_interact = true
-interactable_id = "box"
-
-[node name="Area3D" type="Area3D" parent="MeshInstance3D5"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D5/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 0.999995, 0, 0, 0, 0.999987, 0.132297, -0.0232739, 0.223238)
-shape = SubResource("BoxShape3D_yehrc")
-debug_color = Color(0.923897, 2.74345e-05, 0.653355, 0.831373)
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="." node_paths=PackedStringArray("click_area")]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.70644, 3, 3)
+layers = 2
 instance_shader_parameters/color_mode = 2
 instance_shader_parameters/tint_color = Color(1, 0, 0, 1)
 instance_shader_parameters/use_emission = false
 mesh = SubResource("BoxMesh_7w42k")
-skeleton = NodePath("Area3D")
-script = ExtResource("2_5wdmw")
-click_area = NodePath("Area3D")
+skeleton = NodePath("clickable_area")
+script = ExtResource("3_yehrc")
+render_settings = ExtResource("4_yehrc")
 can_interact = true
 interactable_id = "box"
 
-[node name="Area3D" type="Area3D" parent="MeshInstance3D4"]
+[node name="clickable_area" type="Area3D" parent="MeshInstance3D4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/clickable_area"]
 shape = SubResource("BoxShape3D_yehrc")
 debug_color = Color(0.923897, 2.74345e-05, 0.653355, 0.831373)

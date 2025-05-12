@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RenderLayerSettings" load_steps=2 format=3 uid="uid://c5f8r8405622x"]
+
+[ext_resource type="Script" uid="uid://bixwlt7j7ys06" path="res://tools/render_layer_tools/scripts/render_layer_settings.gd" id="1_udmqn"]
+
+[resource]
+script = ExtResource("1_udmqn")
+render_layer = 8
+render_colour = Color(0, 0.2, 1, 1)
+metadata/_custom_type_script = "uid://bixwlt7j7ys06"
