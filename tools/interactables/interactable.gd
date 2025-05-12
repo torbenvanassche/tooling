@@ -19,7 +19,6 @@ func _ready() -> void:
 		Debug.warn("No area found for interactable %s." % interactable_id)
 	
 func on_click(btn_index: int) -> void:
-	print(interactable_id)
 	if !can_interact:
 		return;
 		

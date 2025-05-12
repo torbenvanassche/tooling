@@ -2,7 +2,8 @@
 
 [resource]
 code = "shader_type spatial;
-render_mode depth_prepass_alpha, cull_back;
+
+render_mode cull_back, depth_prepass_alpha;
 
 instance uniform vec4 tint_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 instance uniform int color_mode : hint_enum(\"Grayscale\", \"Grayscale + Tint\", \"Tint Only\", \"Full Texture\") = 0;
@@ -23,7 +24,7 @@ void fragment() {
 
 	vec4 world_pos_homogenous = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0));
     vec3 world_pos = world_pos_homogenous.xyz / world_pos_homogenous.w;
-    bool inside_sphere = distance(world_pos, sphere_center) <= sphere_radius;
+    bool inside_sphere = sphere_radius > 0.0 && distance(world_pos, sphere_center) <= sphere_radius;
 
     if (inside_sphere) {
 		if( color_mode == 3) {
@@ -44,7 +45,7 @@ void fragment() {
     }
 
     ALBEDO = final_color;
-    ALPHA = tex_color.a * tint_color.a;
+    ALPHA = max(tex_color.a,tint_color.a);
     NORMAL_MAP = texture(normal_texture, UV).xyz;
 
     if (use_emission) {
