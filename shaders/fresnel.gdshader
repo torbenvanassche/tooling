@@ -5,7 +5,7 @@ uniform vec3 base_color: source_color = vec3(1.0, 1.0, 1.0);
 uniform vec3 fresnel_color : source_color = vec3(0, 0, 1.0);
 
 uniform float transparency = 0.1;
-uniform float fresnel_power = 5.0; 
+uniform float fresnel_power = 5.0;
 uniform float fresnel_strength = 1.0;
 
 vec3 fresnel_glow(float amount, float intensity, vec3 color, vec3 normal, vec3 view)

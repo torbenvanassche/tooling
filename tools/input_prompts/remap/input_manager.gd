@@ -1,6 +1,6 @@
 extends Node
 
-@onready var mappable_actions: Dictionary = {
+@onready var mappable_actions: Dictionary[String, String] = {
 	"forward": tr("KEYBIND_MOVE_UP"),
 	"back": tr("KEYBIND_MOVE_DOWN"),
 	"left": tr("KEYBIND_MOVE_LEFT"),
@@ -11,7 +11,10 @@ extends Node
 	"primary_action": tr("KEYBIND_PRIMARY_ACTION"),
 	"secondary_action": tr("KEYBIND_SECONDARY_ACTION"),
 	"interact": tr("KEYBIND_INTERACT"),
-	"cancel": tr("KEYBIND_CANCEL")
+	"cancel": tr("KEYBIND_CANCEL"),
+	"ability_1": tr("KEYBIND_ABILITY_1"),
+	"ability_2": tr("KEYBIND_ABILITY_2"),
+	"ability_3": tr("KEYBIND_ABILITY_3")
 }
 
 var action_to_remap: StringName;

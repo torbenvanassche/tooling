@@ -30,3 +30,9 @@ func on_click(btn_index: int) -> void:
 func execute(btn_index: int = 0) -> void:
 	if btn_index == 0:
 		primary.emit();
+		
+func set_interactable(b: bool) -> void:
+	can_interact = b;
+	for collision_shape in click_area.get_children():
+		if collision_shape is CollisionShape3D:
+			collision_shape.set_deferred("disabled", !b);

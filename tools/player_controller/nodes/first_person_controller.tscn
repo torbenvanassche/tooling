@@ -6,11 +6,19 @@
 
 [node name="PlayerCharacter" instance=ExtResource("1_8yw77")]
 script = ExtResource("2_c2ve6")
-moveForwardAction = "forward"
+ability_1_action = null
+ability_2_action = null
+ability_3_action = null
+autoBunnyHop = null
+continiousCrouch = null
+continiousRun = null
+moveForwardAction = null
 moveBackwardAction = "back"
-moveLeftAction = "left"
-moveRightAction = "right"
-runAction = "sprint"
+moveLeftAction = null
+moveRightAction = null
+runAction = null
+crouchAction = null
+jumpAction = null
 
 [node name="CameraHolder" parent="." index="0"]
 script = ExtResource("2_nj1mu")
