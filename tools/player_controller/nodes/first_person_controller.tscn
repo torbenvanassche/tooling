@@ -1,24 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfuyvy7hw3y1v"]
+[gd_scene load_steps=8 format=3 uid="uid://dfuyvy7hw3y1v"]
 
 [ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://addons/PlayerCharacter/PlayerCharacterScene.tscn" id="1_8yw77"]
 [ext_resource type="Script" uid="uid://cljpugjgep3su" path="res://tools/player_controller/scripts/player_controller.gd" id="2_c2ve6"]
 [ext_resource type="Script" uid="uid://cxqrew203m76h" path="res://tools/player_controller/scripts/camera_controller.gd" id="2_nj1mu"]
+[ext_resource type="Script" uid="uid://bixwlt7j7ys06" path="res://tools/render_layer_tools/scripts/render_layer_settings.gd" id="3_ak6rn"]
+[ext_resource type="Resource" uid="uid://c5f8r8405622x" path="res://tools/render_layer_tools/resources/blue.tres" id="4_ggt1h"]
+[ext_resource type="Resource" uid="uid://dsrjw2lauoweq" path="res://tools/render_layer_tools/resources/green.tres" id="5_h2ph3"]
+[ext_resource type="Resource" uid="uid://lo4835f5cf0j" path="res://tools/render_layer_tools/resources/red.tres" id="6_ntb7c"]
 
 [node name="PlayerCharacter" instance=ExtResource("1_8yw77")]
 script = ExtResource("2_c2ve6")
-ability_1_action = null
-ability_2_action = null
-ability_3_action = null
-autoBunnyHop = null
-continiousCrouch = null
-continiousRun = null
-moveForwardAction = null
+ability_1_action = "ability_1"
+ability_2_action = "ability_2"
+ability_3_action = "ability_3"
+color_mappings = Dictionary[String, ExtResource("3_ak6rn")]({
+"blue": ExtResource("4_ggt1h"),
+"green": ExtResource("5_h2ph3"),
+"red": ExtResource("6_ntb7c")
+})
+moveForwardAction = "forward"
 moveBackwardAction = "back"
-moveLeftAction = null
-moveRightAction = null
-runAction = null
-crouchAction = null
-jumpAction = null
+moveLeftAction = "left"
+moveRightAction = "right"
+runAction = "sprint"
 
 [node name="CameraHolder" parent="." index="0"]
 script = ExtResource("2_nj1mu")
