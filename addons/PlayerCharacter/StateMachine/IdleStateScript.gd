@@ -15,9 +15,12 @@ func enter(charRef : CharacterBody3D):
 func verifications():
 	#manage the appliements that need to be set at the start of the state
 	cR.floor_snap_length = 1.0
-	if cR.jumpCooldown > 0.0: cR.jumpCooldown = -1.0
-	if cR.nbJumpsInAirAllowed < cR.nbJumpsInAirAllowedRef: cR.nbJumpsInAirAllowed = cR.nbJumpsInAirAllowedRef
-	if cR.coyoteJumpCooldown < cR.coyoteJumpCooldownRef: cR.coyoteJumpCooldown = cR.coyoteJumpCooldownRef
+	if cR.jumpCooldown > 0.0: 
+		cR.jumpCooldown = -1.0
+	if cR.nbJumpsInAirAllowed < cR.nbJumpsInAirAllowedRef: 
+		cR.nbJumpsInAirAllowed = cR.nbJumpsInAirAllowedRef
+	if cR.coyoteJumpCooldown < cR.coyoteJumpCooldownRef: 
+		cR.coyoteJumpCooldown = cR.coyoteJumpCooldownRef
 	
 func physics_update(delta : float):
 	checkIfFloor()

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnfpbjh5arxvc"]
+
+[ext_resource type="Material" uid="uid://dmja37y16b12d" path="res://tools/fresnel_effect/materials/fresnel_effect.tres" id="1_xl4wr"]
+[ext_resource type="Script" uid="uid://h4nr3nqmvcv3" path="res://tools/fresnel_effect/scripts/fresnel_controller.gd" id="2_6ts0h"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_6ts0h"]
+material = ExtResource("1_xl4wr")
+radial_segments = 16
+rings = 16
+
+[node name="sphere_area_fresnel" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_6ts0h")
+script = ExtResource("2_6ts0h")

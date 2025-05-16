@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dmja37y16b12d"]
 
-[ext_resource type="Shader" uid="uid://cl6i6gmyfaw8y" path="res://shaders/fresnel.gdshader" id="1_fi4wy"]
+[ext_resource type="Shader" uid="uid://cl6i6gmyfaw8y" path="res://tools/fresnel_effect/shaders/fresnel.gdshader" id="1_fi4wy"]
 
 [resource]
 render_priority = 1

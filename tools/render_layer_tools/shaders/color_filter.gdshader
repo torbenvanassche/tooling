@@ -1,12 +1,9 @@
-[gd_resource type="Shader" format=3 uid="uid://clgt0a45gbdju"]
-
-[resource]
-code = "shader_type spatial;
+shader_type spatial;
 
 render_mode cull_back, depth_prepass_alpha;
 
 instance uniform vec4 tint_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
-instance uniform int color_mode : hint_enum(\"Grayscale\", \"Grayscale + Tint\", \"Tint Only\", \"Full Texture\") = 0;
+instance uniform int color_mode : hint_enum("Grayscale", "Grayscale + Tint", "Tint Only", "Full Texture") = 0;
 instance uniform bool use_emission = false;
 
 uniform sampler2D albedo_texture : source_color;
@@ -56,4 +53,3 @@ void fragment() {
         EMISSION = emission;
     }
 }
-"

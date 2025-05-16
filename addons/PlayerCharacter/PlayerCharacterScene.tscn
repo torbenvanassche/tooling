@@ -81,8 +81,6 @@ moveBackwardAction = "moveBackward"
 moveLeftAction = "moveLeft"
 moveRightAction = "moveRight"
 runAction = "run"
-crouchAction = "crouch"
-jumpAction = "jump"
 
 [node name="CameraHolder" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.55, 0)
@@ -103,7 +101,7 @@ onFloorTiltValDivider = 1.6
 mouseModeAction = "mouseMode"
 
 [node name="Camera" type="Camera3D" parent="CameraHolder"]
-cull_mask = 3
+cull_mask = 1
 current = true
 fov = 90.0
 near = 0.01

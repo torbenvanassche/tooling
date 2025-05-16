@@ -18,8 +18,8 @@ func _raycast_mouse_direction() -> void:
 			area.get_meta("interactable").on_click(0);
 			
 func set_culling_mask(mask: int) -> void:
-	camera.cull_mask = mask;
 	Manager.instance.render_layer_changed.emit(mask);
+	camera.cull_mask = mask;
 
 func cameraBob(delta: float) -> void:
 	if playChar.stateMachine.currStateName != "Idle":

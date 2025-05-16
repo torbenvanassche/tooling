@@ -13,6 +13,7 @@ extends Interactable
 
 func _ready() -> void:
 	Manager.instance.render_layer_changed.connect(_on_render_layer_changed)
+	super();
 	
 func _on_render_layer_changed(layer_mask: int) -> void:
 	set_interactable(layer_mask & render_settings.render_layer != 0)

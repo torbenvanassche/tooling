@@ -1,10 +1,10 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cviydsg8uwpcm"]
 
-[ext_resource type="Shader" uid="uid://clgt0a45gbdju" path="res://shaders/color_filter.tres" id="1_akyga"]
+[ext_resource type="Shader" uid="uid://dge7f8xmru2f7" path="res://tools/render_layer_tools/shaders/color_filter.gdshader" id="1_hgsar"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_akyga")
+shader = ExtResource("1_hgsar")
 shader_parameter/tint_as_emission = false
 shader_parameter/sphere_center = Vector3(0, 0, 0)
 shader_parameter/sphere_radius = 0.0
