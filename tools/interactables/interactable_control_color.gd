@@ -5,11 +5,8 @@ extends Interactable
 	set(value):
 		render_settings = value;
 		if render_settings:
-			layers = render_settings.render_layer;
+			layers = 1;
 			set_instance_shader_parameter("tint_color", render_settings.render_colour)
-		else:
-			layers = 0 << 1;
-			set_instance_shader_parameter("tint_color", Color.WHITE)
 
 func _ready() -> void:
 	if Manager.instance:
@@ -18,4 +15,6 @@ func _ready() -> void:
 	_on_render_layer_changed(1);
 	
 func _on_render_layer_changed(layer_mask: int) -> void:
-	set_interactable(layer_mask & render_settings.render_layer != 0)
+	var is_in_layer: bool = layer_mask & render_settings.render_layer != 0;
+	set_instance_shader_parameter("color_mode", 0 if is_in_layer else 2)
+	set_interactable(is_in_layer)

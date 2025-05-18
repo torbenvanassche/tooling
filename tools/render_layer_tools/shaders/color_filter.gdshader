@@ -12,8 +12,8 @@ uniform sampler2D normal_texture : hint_normal;
 
 uniform bool tint_as_emission = false;
 
-uniform vec3 sphere_center = vec3(0.0, 0.0, 0.0);
-uniform float sphere_radius = 1.0;
+instance uniform vec3 sphere_center = vec3(0.0, 0.0, 0.0);
+instance uniform float sphere_radius = 1.0;
 
 void fragment() {
     vec4 tex_color = texture(albedo_texture, UV);

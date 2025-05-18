@@ -19,5 +19,5 @@ func _physics_process(delta: float) -> void:
 func _toggle_layer(layer: int) -> void:
 	var current_mask: int = camHolder.camera.cull_mask
 	var is_active := (current_mask & layer) != 0
-	var new_mask: int = 1 << 0 if is_active else (1 << 0) | layer;
+	var new_mask: int = 1 if is_active else 1 | layer;
 	camHolder.set_culling_mask(new_mask)
